@@ -1,7 +1,7 @@
 import os, gridfs, pika, json
 from flask import Flask, request
 from flask_pymongo import PyMongo
-from auth import access
+from auth import validate
 from auth_svc import access
 from storage import util
 
@@ -27,4 +27,4 @@ def login():
 
 server.route("/upload, methods=[POST]")
 def upload():
-    access, err = validate.token(request)
+    access, err = validate.token(request)  
