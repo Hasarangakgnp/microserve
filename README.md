@@ -1,10 +1,11 @@
-# 🎵 Video to MP3 Converter – Microservices Architecture
+# MicroServe | Video to MP3 Converter | Microservices Architecture
+
 
 This project is a **Video to MP3 Converter system** built using a **microservices architecture** and deployed on **Kubernetes (Minikube)**. Users authenticate, upload video files, have them asynchronously converted to MP3 using queues, receive email notifications upon completion, and finally download the converted audio file.
 
 ---
 
-## 🧩 High-Level Architecture
+## High-Level Architecture
 
 ![Architecture Diagram](./assets/architecture_diagram.png)
 
@@ -23,7 +24,7 @@ This project is a **Video to MP3 Converter system** built using a **microservice
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 * **Language**: Python
 * **Containerization**: Docker
@@ -38,7 +39,7 @@ This project is a **Video to MP3 Converter system** built using a **microservice
 
 ---
 
-## 🔐 Authentication Flow
+## Authentication Flow
 
 1. User must **log in first**
 2. Auth Service validates credentials from MySQL
@@ -49,7 +50,7 @@ This project is a **Video to MP3 Converter system** built using a **microservice
 
 ```bash
 curl -X POST http://mp3converter.com/login \
-  -u pramodgamage7846@gmail.com:Admin123
+  -u <email>:<password>
 ```
 
 **Response:**
@@ -62,13 +63,13 @@ curl -X POST http://mp3converter.com/login \
 
 ---
 
-## 📤 Upload Video
+## Upload Video
 
 After authentication, upload a video file for conversion.
 
 ```bash
 curl -X POST \
-  -F "file=@./testVideo.mkv" \
+  -F "file=@./<Video_name>" \
   -H "Authorization: Bearer <JWT_TOKEN>" \
   http://mp3converter.com/upload
 ```
@@ -82,7 +83,7 @@ curl -X POST \
 
 ---
 
-## 🔄 Video to MP3 Conversion
+## Video to MP3 Conversion
 
 * Converter Service (Python) consumes video messages
 * Video is converted to MP3
@@ -91,7 +92,7 @@ curl -X POST \
 
 ---
 
-## 📧 Notification
+## Notification
 
 Once conversion is complete:
 
@@ -107,7 +108,7 @@ File ID: <fid>
 
 ---
 
-## 📥 Download MP3 File
+## Download MP3 File
 
 After receiving the notification, the user can download the MP3 file using the file ID (`fid`).
 
@@ -115,12 +116,12 @@ After receiving the notification, the user can download the MP3 file using the f
 curl -X GET \
   -H "Authorization: Bearer <JWT_TOKEN>" \
   --output mp3_download.mp3 \
-  "http://mp3converter.com/download?fid=6957941a180e5e4ab14f3694"
+  "http://mp3converter.com/download?fid=<mp3_file_id_in _the_email>"
 ```
 
 ---
 
-## 🗂 Databases
+## Databases
 
 ### MySQL (Auth DB)
 
@@ -140,7 +141,7 @@ user(email, password)
 
 ---
 
-## ☸️ Kubernetes Deployment (Minikube)
+## Kubernetes Deployment (Minikube)
 
 * Each service runs in its own **Pod**
 * Databases deployed as Pods + Services
@@ -158,7 +159,7 @@ Services deployed:
 
 ---
 
-## 🚀 End-to-End Flow Summary
+## End-to-End Flow Summary
 
 1. User logs in → gets JWT
 2. User uploads video
@@ -167,39 +168,6 @@ Services deployed:
 5. MP3 added to MP3 Queue
 6. Notification email sent
 7. User downloads MP3
-
----
-
-## 🧪 Local Testing
-
-Make sure Minikube is running:
-
-```bash
-minikube start
-```
-
-Check services:
-
-```bash
-kubectl get pods
-kubectl get svc
-```
-
----
-
-## 📌 Notes
-
-* JWT expiration is enforced
-* Upload & conversion are asynchronous
-* System is horizontally scalable
-* Designed for microservices & cloud-native environments
-
----
-
-## 👨‍💻 Author
-
-**Pramod Gamage**
-Video to MP3 Converter – Microservices Project
 
 ---
 
