@@ -6,7 +6,7 @@ This project is a **Video to MP3 Converter system** built using a **microservice
 
 ## 🧩 High-Level Architecture
 
-![Architecture Diagram](./architecture.png)
+![Architecture Diagram](./assets/architecture_diagram.png)
 
 ### Components
 

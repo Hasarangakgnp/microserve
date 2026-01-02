@@ -3,3 +3,4 @@ src/gateway/venv/
 src/converter/venv/
 src/notifications/venv/
 src/notifications/manifests/secret.yaml
+.vscode/
