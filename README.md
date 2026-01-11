@@ -1,4 +1,4 @@
-# 🎵 MicroServe | Video to MP3 Converter | Microservices Architecture
+# 🎵 SoundShift | Video to MP3 Converter | Microservices Architecture
 
 
 This project is a **Video to MP3 Converter system** built using a **microservices architecture** and deployed on **Kubernetes (Minikube)**. Users authenticate, upload video files, have them asynchronously converted to MP3 using queues, receive email notifications upon completion, and finally download the converted audio file.
